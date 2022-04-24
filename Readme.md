@@ -11,4 +11,4 @@ not-rm <INPUT> <EXT>
         EXT: File extention to NOT delete. Please include the (.)
 ```
 ## Example
-not-rm ./target .o
+`not-rm ./target .o`
