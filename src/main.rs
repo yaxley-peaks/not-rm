@@ -1,4 +1,11 @@
+use clap::Parser;
 use std::fs;
+
+#[derive(Parser, Debug)]
+struct CLI {
+    input: String,
+    ext: String,
+}
 
 fn get_all_files(path: &str) -> Vec<String> {
     let mut res = vec![];
@@ -15,7 +22,8 @@ fn filter_not_paths(paths: Vec<String>, pat: &str) -> Vec<String> {
         .collect()
 }
 fn main() {
-    filter_not_paths(get_all_files("./test"), ".txt")
+    let path = CLI::parse();
+    filter_not_paths(get_all_files(&path.input), &path.ext)
         .into_iter()
         .for_each(|file| fs::remove_file(file).unwrap());
 }
