@@ -4,11 +4,11 @@ An excessively simple tool I wrote to manage all the garbage .o and .hi files
 GHC generates. If you are here, may you find this useful
 
 ## Usage
-```
+```bash
 not-rm <INPUT> <EXT>
     where
         INPUT: Directory to look in.
-        EXT: File extention to NOT delete. Please include the (.)
+        EXT: File extention to NOT delete. Please do not include the (.)
 ```
 ## Example
 `not-rm ./target .o`
@@ -16,5 +16,6 @@ not-rm <INPUT> <EXT>
 
 ### TODOs
 - [ ] Multiple extensions together
-- [ ] Use rust's native extension matching
-- [ ] Standardize pattern syntax (include .?)
+- [x] Use rust's native extension matching
+- [x] Standardize pattern syntax (include .?)
+- [ ] Write better documentation with clap
