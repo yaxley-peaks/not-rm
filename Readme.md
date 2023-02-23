@@ -18,4 +18,4 @@ not-rm <INPUT> <EXT>
 - [x] Multiple extensions together
 - [x] Use rust's native extension matching
 - [x] Standardize pattern syntax (include .?)
-- [ ] Write better documentation with clap
+- [x] Write better documentation with clap

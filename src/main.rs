@@ -1,9 +1,16 @@
 use clap::Parser;
-use std::{fs, path::PathBuf};
+use std::{fs, path::PathBuf, process::exit};
 
 #[derive(Parser, Debug)]
+#[command(name = "not-rm")]
+#[command(author = "yaxley peaks <epiclycoolgaemer@gmail.com>")]
+#[command(version = "1.1")]
+#[command(about = "Does not remove files with extensions in folder")]
 struct CLI {
+    /// Path to folder
     input: String,
+    /// File extensions to NOT delete.
+    /// Do not include the '.' (e.g. "txt" and not ".txt")
     exts: Vec<String>,
 }
 
@@ -25,6 +32,11 @@ fn filter_not_paths(paths: Vec<PathBuf>, pat: &str) -> Vec<PathBuf> {
 }
 fn main() {
     let info = CLI::parse();
+    if info.exts.len() == 0 {
+        eprintln!("No file extensions were provided. Doing nothing!"); // add color here maybe
+        exit(1);
+    }
+
     for path in info.exts {
         filter_not_paths(get_all_files(&info.input), &path)
             .into_iter()
