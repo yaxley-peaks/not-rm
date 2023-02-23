@@ -4,7 +4,7 @@ use std::{fs, path::PathBuf};
 #[derive(Parser, Debug)]
 struct CLI {
     input: String,
-    ext: String,
+    exts: Vec<String>,
 }
 
 fn get_all_files(path: &str) -> Vec<PathBuf> {
@@ -24,8 +24,10 @@ fn filter_not_paths(paths: Vec<PathBuf>, pat: &str) -> Vec<PathBuf> {
         .collect()
 }
 fn main() {
-    let path = CLI::parse();
-    filter_not_paths(get_all_files(&path.input), &path.ext)
-        .into_iter()
-        .for_each(|file| fs::remove_file(file).expect("Failed to get access"));
+    let info = CLI::parse();
+    for path in info.exts {
+        filter_not_paths(get_all_files(&info.input), &path)
+            .into_iter()
+            .for_each(|file| fs::remove_file(file).expect("Failed to get access"));
+    }
 }

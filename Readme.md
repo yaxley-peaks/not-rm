@@ -15,7 +15,7 @@ not-rm <INPUT> <EXT>
 
 
 ### TODOs
-- [ ] Multiple extensions together
+- [x] Multiple extensions together
 - [x] Use rust's native extension matching
 - [x] Standardize pattern syntax (include .?)
 - [ ] Write better documentation with clap
