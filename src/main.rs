@@ -1,5 +1,5 @@
 use clap::Parser;
-use std::fs;
+use std::{fs, path::PathBuf};
 
 #[derive(Parser, Debug)]
 struct CLI {
@@ -7,20 +7,20 @@ struct CLI {
     ext: String,
 }
 
-fn get_all_files(path: &str) -> Vec<String> {
+fn get_all_files(path: &str) -> Vec<PathBuf> {
     let mut res = vec![];
     let paths = fs::read_dir(path).unwrap();
     for _path in paths {
-        if _path.as_ref().unwrap().path().is_file(){
-            res.push(String::from(_path.unwrap().path().to_str().unwrap()));
+        if _path.as_ref().unwrap().path().is_file() {
+            res.push(_path.unwrap().path());
         }
     }
     res
 }
-fn filter_not_paths(paths: Vec<String>, pat: &str) -> Vec<String> {
+fn filter_not_paths(paths: Vec<PathBuf>, pat: &str) -> Vec<PathBuf> {
     paths
         .into_iter()
-        .filter(|path| !path.contains(pat))
+        .filter(|x| x.extension().unwrap().to_owned() == pat)
         .collect()
 }
 fn main() {

@@ -12,3 +12,9 @@ not-rm <INPUT> <EXT>
 ```
 ## Example
 `not-rm ./target .o`
+
+
+### TODOs
+- [ ] Multiple extensions together
+- [ ] Use rust's native extension matching
+- [ ] Standardize pattern syntax (include .?)
