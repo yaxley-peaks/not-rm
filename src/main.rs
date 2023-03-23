@@ -4,7 +4,7 @@ use std::{fs, path::PathBuf, process::exit};
 #[derive(Parser, Debug)]
 #[command(name = "not-rm")]
 #[command(author = "yaxley peaks <epiclycoolgaemer@gmail.com>")]
-#[command(version = "1.1")]
+#[command(version = "1.2")]
 #[command(about = "Does not remove files with extensions in folder")]
 struct CLI {
     /// Path to folder
