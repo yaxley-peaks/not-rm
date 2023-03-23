@@ -27,11 +27,12 @@ fn get_all_files(path: &str) -> Vec<PathBuf> {
 fn filter_not_paths(paths: Vec<PathBuf>, pat: &str) -> Vec<PathBuf> {
     paths
         .into_iter()
-        .filter(|x| x.extension().unwrap().to_owned() != pat)
+        .filter(|x| x.extension().unwrap_or_default().to_owned() != pat)
         .collect()
 }
 fn main() {
     let info = CLI::parse();
+
     if info.exts.len() == 0 {
         eprintln!("No file extensions were provided. Doing nothing!"); // add color here maybe
         exit(1);
