@@ -27,7 +27,7 @@ fn get_all_files(path: &str) -> Vec<PathBuf> {
 fn filter_not_paths(paths: Vec<PathBuf>, pat: &str) -> Vec<PathBuf> {
     paths
         .into_iter()
-        .filter(|x| x.extension().unwrap().to_owned() == pat)
+        .filter(|x| x.extension().unwrap().to_owned() != pat)
         .collect()
 }
 fn main() {
